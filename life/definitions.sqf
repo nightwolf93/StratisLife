@@ -20,6 +20,7 @@ stratis_licences = [];
 ////////////////
 
 dialog_garage_buy_items = [];
+dialog_garage_buy_def = [];
 
 ////////////////
 /// Licences ///
@@ -107,10 +108,10 @@ licence_life = [
         licence_cop0,
         licence_car,
         licence_cop0,	
-		licence_cop1,
-		licence_cop2,
-		licence_cop3,
-		licence_cop4
+	licence_cop1,
+	licence_cop2,
+	licence_cop3,
+	licence_cop4
 ];
 
 //////////////
@@ -133,12 +134,14 @@ price_licence_car = 1500;
 /// Vehicles ///
 ////////////////
 
-vehicle_offroad_0 = ["0", "Tout-Terrain (Civil)", "offroad_0", "5000", "textures\mini\offroad_0_mini.paa"];
-vehicle_offroad_cop = ["1", "Tout-Terrain (Gendarmerie)", "offroad_cop", "2000", "textures\mini\offroad_cop_mini.paa"];
+vehicle_offroad_0 = ["0", "Tout-Terrain (Civil)", "offroad_0", "15000", "textures\mini\offroad_0_mini.paa"];
+vehicle_offroad_cop = ["1", "Tout-Terrain (Gendarmerie)", "offroad_cop", "16500", "textures\mini\offroad_cop_mini.paa"];
+vehicle_quadbike = ["2", "Quad (Civil)", "quadbike", "2500", "textures\mini\quadbike_mini.paa"];
 
 vehicles_life = [
-	vehicle_offroad_0,
-	vehicle_offroad_cop
+        vehicle_offroad_0,
+        vehicle_offroad_cop,
+        vehicle_quadbike
 ];
 
 ///////////////

@@ -149,7 +149,7 @@ class Mission
 					vehicle="C_man_hunter_1_F";
 					leader=1;
 					skill=0.60000002;
-					init="this addAction[""Acheter un véhicule"", ""[['offroad_0','offroad_cop']] call fn_buy_vehicles_dialog""];this addAction [""TEST Spawn"", ""['offroad_0', 'spawn_veh_1'] call fn_spawn_vehicle""];this allowDamage false;this enableSimulation false;";
+					init="this addAction[""Acheter un véhicule"", ""[['quadbike', 'offroad_0','offroad_cop']] call fn_buy_vehicles_dialog""];this addAction [""TEST Spawn"", ""['offroad_0', 'spawn_veh_1'] call fn_spawn_vehicle""];this allowDamage false;this enableSimulation false;";
 				};
 			};
 		};
@@ -307,6 +307,7 @@ class Mission
 				class Item0
 				{
 					position[]={3053.155,28.18,6199.2588};
+					azimut=250;
 					id=14;
 					side="CIV";
 					vehicle="C_man_1";

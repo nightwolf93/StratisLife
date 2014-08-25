@@ -12,6 +12,7 @@ fn_buy_vehicles_dialog = {
 	private ["_vehicles_available", "_def"];
 	_vehicles_available = _this select 0;
 	dialog_garage_buy_items = [];
+	dialog_garage_buy_def = nil;
 
 	disableSerialization;
 	createDialog "garage_buy_dialog";
@@ -28,11 +29,18 @@ fn_buy_vehicles_dialog_select = {
 	_ctrlId = _this select 0;
 	_entry = _this select 1;
 	_def = dialog_garage_buy_items select _entry;
+	dialog_garage_buy_def = _def;
 	_display = findDisplay 6000;
 	_img = _display displayCtrl 6004;
 	_cost = _display displayCtrl 6002;
 	_img ctrlSetText (_def select 4);
 	_cost ctrlSetText format["Prix : %1$", _def select 3];
+};
+
+fn_garage_buy = {
+	if(count dialog_garage_buy_def < 1) then { { hint "Achat impossible !"; }; };
+
+	
 };
 
 fn_get_vehicle_def = {
@@ -58,8 +66,8 @@ fn_spawn_vehicle = {
 
 	//Definitions des vehicules
 	switch(_name) do {
-		case "offroad_0": { _vehicle = [_pos] call fn_spawn_offroad_0; };
-		case "offroad_1": { _vehicle = [_pos] call fn_spawn_offroad_1; };
+		case "quadbike": { _vehicle = "B_Quadbike_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_quadbike",nil,true ] call BIS_fnc_MP; };
+		case "offroad_0": { _vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_offroad_0",nil,true ] call BIS_fnc_MP; };
 		case "offroad_cop": { _vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_offroad_cop1",nil,true ] call BIS_fnc_MP; };
 	};
 	[[_vehicle ,"LOCKED"],"fn_set_vehicle_lock",nil,true ] call BIS_fnc_MP; // Lock the vehicle
@@ -76,25 +84,26 @@ fn_set_vehicle_lock = {
 	_vehicle setVehicleLock _state;
 };
 
+fn_spawn_quadbike = {
+	private ["_vehicle", "_pos"];
+	_vehicle = _this select 0;
+	_pos = _this select 1;
+
+	clearMagazineCargo _vehicle;
+	clearWeaponCargo _vehicle;
+	clearItemCargo _vehicle;
+
+	[_vehicle] call fn_add_siren_to_vehicle;
+
+	_vehicle;
+};
+
 fn_spawn_offroad_0 = { // Offroad white
 	private ["_vehicle", "_pos"];
 	_pos = _this select 0;
 
 	_vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos);
 	_vehicle setObjectTexture [0, "\A3\soft_F\Offroad_01\Data\Offroad_01_ext_BASE02_CO.paa"];
-	clearMagazineCargo _vehicle;
-	clearWeaponCargo _vehicle;
-	clearItemCargo _vehicle;
-
-	_vehicle;
-};
-
-fn_spawn_offroad_1 = { // Offroad blue
-	private ["_vehicle", "_pos"];
-	_pos = _this select 0;
-
-	_vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos);
-	_vehicle setObjectTexture [0, "\A3\soft_F\Offroad_01\Data\Offroad_01_ext_BASE03_CO.paa"];
 	clearMagazineCargo _vehicle;
 	clearWeaponCargo _vehicle;
 	clearItemCargo _vehicle;
