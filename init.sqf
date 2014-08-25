@@ -1,0 +1,1 @@
+execVM "life\init.sqf";
