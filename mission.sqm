@@ -155,7 +155,7 @@ class Mission
 					vehicle="C_man_hunter_1_F";
 					leader=1;
 					skill=0.60000002;
-					init="this addAction [""Acheter : Permis de conduire (1000$)"", ""[] call fn_buy_permisconduire""];this addAction[""Acheter un véhicule"", ""[['quadbike', 'offroad_0','hatchback_0'], 'spawn_veh_1'] call fn_buy_vehicles_dialog""];this allowDamage false;this enableSimulation false;";
+					init="this addAction [""Acheter : Permis de conduire (1000$)"", ""[] call fn_buy_permisconduire""];this addAction[""Acheter un véhicule"", ""[['quadbike', 'offroad_0','hatchback_0'], 'spawn_veh_1'] call fn_buy_vehicles_dialog""];this addAction [""Mon garage"", ""[] call fn_my_garage_dialog""];this allowDamage false;this enableSimulation false;";
 				};
 			};
 		};
@@ -185,7 +185,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2880.4783,3.3581612,6061.0396};
+					position[]={3048.686,28.162012,6195.7002};
 					azimut=315;
 					id=7;
 					side="CIV";
@@ -358,7 +358,7 @@ class Mission
 					vehicle="C_man_shorts_4_F_euro";
 					leader=1;
 					skill=0.60000002;
-					init="this addAction[""Acheter des vêtements"", ""['civ'] call fn_open_cloth_dialog""];this allowDamage false;this enableSimulation false;";
+					init="this addAction[""Acheter des vêtements (Civ)"", ""['civ'] call fn_open_cloth_dialog""];this allowDamage false;this enableSimulation false;";
 				};
 			};
 		};
@@ -378,7 +378,7 @@ class Mission
 					vehicle="C_man_p_beggar_F_euro";
 					leader=1;
 					skill=0.60000002;
-					init="this addAction[""Acheter des vêtements"", ""['cop'] call fn_open_cloth_dialog""];this allowDamage false;this enableSimulation false;";
+					init="this addAction[""Acheter des vêtements (Recrue)"", ""['cop0'] call fn_open_cloth_dialog""];this allowDamage false;this enableSimulation false;";
 				};
 			};
 		};

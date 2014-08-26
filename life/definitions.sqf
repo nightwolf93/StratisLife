@@ -14,6 +14,7 @@ stratis_money_player = 40000;
 stratis_inaction = false;
 stratis_inventory = [];
 stratis_licences = [];
+stratis_vehicles_player = [];
 
 ////////////////
 /// Dialogs ////

@@ -48,8 +48,10 @@ fn_garage_buy = {
 	_def = dialog_garage_buy_def;
 	_cost = parseNumber(_def select 3);
 	if(stratis_money_player >= _cost) then {
-		[_def select 2, dialog_garage_buy_pos] call fn_spawn_vehicle;
+		_vehicle = [_def select 2, dialog_garage_buy_pos] call fn_spawn_vehicle;
 		stratis_money_player = stratis_money_player - _cost;
+
+		stratis_vehicles_player = stratis_vehicles_player + [_vehicle];
 		playSound "sell";
 		closeDialog 0;
 	}
@@ -143,7 +145,8 @@ fn_spawn_quadbike = {
 
 fn_spawn_offroad_0 = {
 	private ["_vehicle", "_pos"];
-	_pos = _this select 0;
+	_vehicle = _this select 0;
+	_pos = _this select 1;
 
 	clearMagazineCargo _vehicle;
 	clearWeaponCargo _vehicle;

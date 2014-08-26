@@ -4,7 +4,7 @@ class cloth_buy_dialog {
 	enableSimulation = true;      // freeze the game
 	controlsBackground[] = { };    // no background controls needed
 	objects[] = { };               // no objects needed
-	controls[] = { bg_dialog, header_title, listbox_items, buy_cloth_btn }; 
+	controls[] = { bg_dialog, header_title, listbox_items, buy_cloth_btn, cost_cloth }; 
 
 	class header_title {
 		idc = -1;              // set to -1, unneeded
@@ -52,12 +52,22 @@ class cloth_buy_dialog {
 
 	class buy_cloth_btn : stratlife_btn_blue {
 		idc = 7002;
-		x = safeZoneX + 0.15 + (safeZoneW / 2) - 0.35;
+		x = safeZoneX + 0.24 + (safeZoneW / 2) - 0.35;
 		y = safeZoneY + 0.40 + (safeZoneH / 2) - 0.25;
 		w = 0.10;
 		h = 0.05;
 		sizeEx = 0.035;
 		text = "Acheter";
 		action = "[] call fn_shop_buy_cloth";
+	};
+
+	class cost_cloth : stratlife_label {
+		idc = 7003;
+		x = safeZoneX + 0.02 + (safeZoneW / 2) - 0.35;
+		y = safeZoneY + 0.40 + (safeZoneH / 2) - 0.25;
+		w = 0.15;
+		h = 0.05;
+		sizeEx = 0.035;
+		text = "0$";
 	};
 };
