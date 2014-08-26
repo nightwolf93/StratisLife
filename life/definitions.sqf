@@ -4,13 +4,13 @@
 //  \___ \| __| '__/ _` | __| / __| |    | |  _/ _ \ //
 //  ____) | |_| | | (_| | |_| \__ \ |____| | ||  __/ //
 // |_____/ \__|_|  \__,_|\__|_|___/______|_|_| \___| //
-//									By Nightwolf	 //
-//									v1.0.0.0 		 //
+//				  By Nightwolf	     //
+//				          v1.0.0.0   //
 ///////////////////////////////////////////////////////
 
 stratis_admin_level = 0;
 stratis_money = 20000;
-stratis_money_player = 2500;
+stratis_money_player = 40000;
 stratis_inaction = false;
 stratis_inventory = [];
 stratis_licences = [];
@@ -19,8 +19,11 @@ stratis_licences = [];
 /// Dialogs ////
 ////////////////
 
+dialog_garage_buy_pos = '';
 dialog_garage_buy_items = [];
 dialog_garage_buy_def = [];
+
+dialog_cloth_buy_items = [];
 
 ////////////////
 /// Licences ///
@@ -37,11 +40,10 @@ licence_cannabis =      ["7", "Traitement de cannabis"];
 licence_cacaine =       ["8", "Traitement de cocaïne"];
 licence_heroine =       ["9", "Traitement d'Héroïne"];
 licence_cop0 =          ["10", "Jeune policier"];
-licence_cop0 = 			["10", "Gardien de la paix"];
-licence_cop1 =			["11", "Brigadier de police"];
-licence_cop2 =			["12", "Lieutenant de police"];
-licence_cop3 =			["13", "Capitaine de police"];
-licence_cop4 =			["14", "Commandant de police"];
+licence_cop1 =		["11", "Brigadier de police"];
+licence_cop2 =		["12", "Lieutenant de police"];
+licence_cop3 =		["13", "Capitaine de police"];
+licence_cop4 =		["14", "Commandant de police"];
 licence_car =           ["15", "Permis de conduire"];
 
 //////////////
@@ -135,13 +137,17 @@ price_licence_car = 1500;
 ////////////////
 
 vehicle_offroad_0 = ["0", "Tout-Terrain (Civil)", "offroad_0", "15000", "textures\mini\offroad_0_mini.paa"];
-vehicle_offroad_cop = ["1", "Tout-Terrain (Gendarmerie)", "offroad_cop", "16500", "textures\mini\offroad_cop_mini.paa"];
+vehicle_offroad_cop = ["1", "Tout-Terrain (Police)", "offroad_cop", "16500", "textures\mini\offroad_cop_mini.paa"];
 vehicle_quadbike = ["2", "Quad (Civil)", "quadbike", "2500", "textures\mini\quadbike_mini.paa"];
+vehicle_hatchback = ["3", "Hatchback (Civil)", "hatchback_0", "19000", "textures\mini\hatchback_mini.paa"];
+vehicle_hatchback_cop = ["4", "Hatchback Sport (Police)", "hatchback_cop", "20000", "textures\mini\hatchback_cop_mini.paa"];
 
 vehicles_life = [
         vehicle_offroad_0,
         vehicle_offroad_cop,
-        vehicle_quadbike
+        vehicle_quadbike,
+        vehicle_hatchback,
+        vehicle_hatchback_cop
 ];
 
 ///////////////

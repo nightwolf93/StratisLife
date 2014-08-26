@@ -9,10 +9,13 @@
 ///////////////////////////////////////////////////////
 
 fn_buy_vehicles_dialog = {
-	private ["_vehicles_available", "_def"];
+	private ["_vehicles_available", "_def", "_pos"];
 	_vehicles_available = _this select 0;
+	_pos = _this select 1;
+
+	dialog_garage_buy_pos = _pos;
 	dialog_garage_buy_items = [];
-	dialog_garage_buy_def = nil;
+	dialog_garage_buy_def = [];
 
 	disableSerialization;
 	createDialog "garage_buy_dialog";
@@ -38,9 +41,21 @@ fn_buy_vehicles_dialog_select = {
 };
 
 fn_garage_buy = {
-	if(count dialog_garage_buy_def < 1) then { { hint "Achat impossible !"; }; };
+	private ["_cost", "_def"];
+	if(count dialog_garage_buy_def < 1) exitWith { hint "Achat impossible !"; };
+	if(!([licence_car] call fn_have_licence)) exitWith { hint "Il vous manque votre permis de conduire !"; };
 
-	
+	_def = dialog_garage_buy_def;
+	_cost = parseNumber(_def select 3);
+	if(stratis_money_player >= _cost) then {
+		[_def select 2, dialog_garage_buy_pos] call fn_spawn_vehicle;
+		stratis_money_player = stratis_money_player - _cost;
+		playSound "sell";
+		closeDialog 0;
+	}
+	else{
+		hint format["Vous n'avez pas assez d'argent sur vous, il vous manque %1$ !", str(_cost - stratis_money_player)];
+	};
 };
 
 fn_get_vehicle_def = {
@@ -69,8 +84,10 @@ fn_spawn_vehicle = {
 		case "quadbike": { _vehicle = "B_Quadbike_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_quadbike",nil,true ] call BIS_fnc_MP; };
 		case "offroad_0": { _vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_offroad_0",nil,true ] call BIS_fnc_MP; };
 		case "offroad_cop": { _vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_offroad_cop1",nil,true ] call BIS_fnc_MP; };
+		case "hatchback_0": { _vehicle = "C_Hatchback_01_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_hatchback_0",nil,true ] call BIS_fnc_MP; };
+		case "hatchback_cop": { _vehicle = "C_Hatchback_01_sport_F" createVehicle (getMarkerPos _pos); [[_vehicle ,_pos],"fn_spawn_hatchback_cop",nil,true ] call BIS_fnc_MP; };
 	};
-	[[_vehicle ,"LOCKED"],"fn_set_vehicle_lock",nil,true ] call BIS_fnc_MP; // Lock the vehicle
+	[[_vehicle ,"UNLOCKED"],"fn_set_vehicle_lock",nil,true ] call BIS_fnc_MP; // Lock the vehicle
 
 	_vehicle;
 	
@@ -84,6 +101,34 @@ fn_set_vehicle_lock = {
 	_vehicle setVehicleLock _state;
 };
 
+fn_spawn_hatchback_0 = {
+	private ["_vehicle", "_pos"];
+	_vehicle = _this select 0;
+	_pos = _this select 1;
+
+	clearMagazineCargo _vehicle;
+	clearWeaponCargo _vehicle;
+	clearItemCargo _vehicle;
+
+	_vehicle;
+};
+
+fn_spawn_hatchback_cop = {
+	private ["_vehicle", "_pos"];
+	_vehicle = _this select 0;
+	_pos = _this select 1;
+
+	_vehicle setObjectTexture [0, "textures\hatchback_cop_i.paa"];
+	clearMagazineCargo _vehicle;
+	clearWeaponCargo _vehicle;
+	clearItemCargo _vehicle;
+	_vehicle animate ["HidePolice", 0]; 
+
+	[_vehicle] call fn_add_siren_to_vehicle;
+
+	_vehicle;
+};
+
 fn_spawn_quadbike = {
 	private ["_vehicle", "_pos"];
 	_vehicle = _this select 0;
@@ -93,17 +138,13 @@ fn_spawn_quadbike = {
 	clearWeaponCargo _vehicle;
 	clearItemCargo _vehicle;
 
-	[_vehicle] call fn_add_siren_to_vehicle;
-
 	_vehicle;
 };
 
-fn_spawn_offroad_0 = { // Offroad white
+fn_spawn_offroad_0 = {
 	private ["_vehicle", "_pos"];
 	_pos = _this select 0;
 
-	_vehicle = "C_Offroad_01_F" createVehicle (getMarkerPos _pos);
-	_vehicle setObjectTexture [0, "\A3\soft_F\Offroad_01\Data\Offroad_01_ext_BASE02_CO.paa"];
 	clearMagazineCargo _vehicle;
 	clearWeaponCargo _vehicle;
 	clearItemCargo _vehicle;
