@@ -65,11 +65,11 @@ fn_open_cloth_dialog = {
 		case "cop0": { // Cop cloth shop
 			if(!([licence_cop0] call fn_have_licence)) then { hint format["Il vous manque la licence : %1", licence_cop0 select 1]; _valid = true; };
 
-			_clothList = [["Tenue de recrue", "U_Rangemaster", 500, "uniform"]];
+			_clothList = [["Tenue de recrue", "U_Rangemaster", 6500, "uniform"]];
 
-			_clothList = _clothList + [["Sac de recrue (Hex)", "B_AssaultPack_ocamo", 500, "backpack"]];
+			_clothList = _clothList + [["Sac de recrue (Hex)", "B_AssaultPack_ocamo", 8000, "backpack"]];
 
-			_clothList = _clothList + [["Bonnet (Noir)", "H_Watchcap_blk", 500, "headgear"]];
+			_clothList = _clothList + [["Bonnet (Noir)", "H_Watchcap_blk", 2500, "headgear"]];
 		};
 	};
 
@@ -82,6 +82,15 @@ fn_open_cloth_dialog = {
 			lbAdd[7001, format["%1", _x select 0]];
 		} forEach _clothList;
 	};
+};
+
+fn_buy_cloth_dialog_select = {
+	_ctrlId = _this select 0;
+	_entry = _this select 1;
+	_display = findDisplay 7000;
+	_txt = _display displayCtrl 7003;
+	_cloth = dialog_cloth_buy_items select _entry;
+	_txt ctrlSetText format["Prix : %1$", str(_cloth select 2)];
 };
 
 fn_shop_buy_cloth = {

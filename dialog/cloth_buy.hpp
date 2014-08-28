@@ -68,6 +68,6 @@ class cloth_buy_dialog {
 		w = 0.15;
 		h = 0.05;
 		sizeEx = 0.035;
-		text = "0$";
+		text = "Prix : 0$";
 	};
 };
