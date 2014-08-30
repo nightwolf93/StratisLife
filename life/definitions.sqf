@@ -26,6 +26,8 @@ dialog_garage_buy_def = [];
 
 dialog_cloth_buy_items = [];
 
+dialog_wpn_buy_items = [];
+
 ////////////////
 /// Licences ///
 ////////////////

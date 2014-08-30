@@ -15,6 +15,7 @@ execVM("life\licence.sqf");
 execVM("life\vehicles\siren.sqf");
 execVM("life\garage.sqf");
 execVM("life\cloth.sqf");
+execVM("life\weapons.sqf");
 0 cutText ["","BLACK IN"];
 
 ///////////////////////////////

@@ -15,6 +15,7 @@ respawnDialog = 0;
 #include "dialog\player_menu.hpp"
 #include "dialog\garage_buy.hpp"
 #include "dialog\cloth_buy.hpp"
+#include "dialog\weapons_buy.hpp"
 
 class Header
 {

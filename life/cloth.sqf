@@ -104,6 +104,7 @@ fn_shop_buy_cloth = {
 	playSound "sell";
 
 	if(stratis_money_player >= _cost) then {
+		stratis_money_player = stratis_money_player - _cost;
 		[[player, _cloth],"fn_set_cloth",nil,true ] call BIS_fnc_MP;
 	}
 	else {
